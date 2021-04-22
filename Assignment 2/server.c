@@ -14,8 +14,8 @@ int main(int argc, char const *argv[])
 	int opt = 1;
 	int addrlen = sizeof(address);
 	char *hello = "Hello from server";
-	pid_t current_pid;
-	int privilegeSet=0;
+	pid_t curr_pid;
+	int priv=0;
 	int err;
 	
 
@@ -57,8 +57,8 @@ int main(int argc, char const *argv[])
 	perror("accept");
 	exit(EXIT_FAILURE);
 	}
-	current_pid=fork();
-	if(current_pid==0){
+	curr_pid=fork();
+	if(curr_pid==0){
 		printf("Running in the child proc\n");
 		int ret = execl("child", "child", &new_socket, hello, NULL);
 		printf("%d",&ret);
@@ -67,7 +67,7 @@ int main(int argc, char const *argv[])
 			_exit(2);
 		}
 	}
-	else if(current_pid>0){
+	else if(curr_pid>0){
 	
 		wait(2000);
 		printf("Returned to Parent...\n");
