@@ -19,7 +19,6 @@ int main(int argc, char const *argv[])
 		exit(0);
 	}
 	priv = setuid(65534); 
-	//printf("privilege Set: %d\n",privilegeSet);
 	if(priv ==-1){
 		printf("Error in reducing Privilege\n");
 		return 0;
