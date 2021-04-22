@@ -10,8 +10,3 @@ Assignment 1
 Execute server file with sudo
 Execute client file
 
-
-Assignment 2
-
-Execute server file and child file with sudo
-Execute child file
