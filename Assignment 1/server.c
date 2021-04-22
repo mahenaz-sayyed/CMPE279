@@ -15,9 +15,9 @@ int main(int argc, char const *argv[])
 	int addrlen = sizeof(address);
 	char buffer[102] = {0};
 	char *hello = "Hello from server";
-	pid_t current_pid;
-	int privilegeSet=0;
-int err;
+	pid_t curr_pid;
+	int priv=0;
+        int err;
 
 	printf("execve=0x%p\n", execve);
 
@@ -57,12 +57,12 @@ int err;
 	perror("accept");
 	exit(EXIT_FAILURE);
 	}
-	current_pid=fork();
-	if(current_pid==0){
+	curr_pid=fork();
+	if(curr_pid==0){
 		
 		printf("Running in the child proc\n");
-		privilegeSet = setuid(65534); 
-		if(privilegeSet ==-1){
+		priv = setuid(65534); 
+		if(priv ==-1){
 			printf("Error in reducing Privilege\n");
 			return 0;
 		}
@@ -71,10 +71,10 @@ int err;
 		send(new_socket , hello , strlen(hello) , 0 );
 		printf("Hello message sent\n");
 	}
-	else if(current_pid>0){
+	else if(curr_pid>0){
 	
-		wait(200);
-		printf("Returned to Parent...\n");
+		wait(2000);
+		printf("Returned to the parent proc\n");
 
 	}
 	else{
