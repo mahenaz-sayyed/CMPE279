@@ -8,7 +8,7 @@
 #define PORT 8080
 int main(int argc, char const *argv[])
 {
-	int new_socket,privilegeSet,valread;
+	int new_socket,priv,valread;
 	char *hello;
 	char buffer[1024] = {0};
 	if(argc>1){
@@ -18,9 +18,9 @@ int main(int argc, char const *argv[])
 		printf("Invalid no. of arguments to child");
 		exit(0);
 	}
-	privilegeSet = setuid(65534); 
+	priv = setuid(65534); 
 	//printf("privilege Set: %d\n",privilegeSet);
-	if(privilegeSet ==-1){
+	if(priv ==-1){
 		printf("Error in reducing Privilege\n");
 		return 0;
 	}
